@@ -1,0 +1,13 @@
+{
+  "name": "Before 18",
+  "short_name": "Before 18",
+  "description": "What foster youth in California are owed, when it opens, when it closes, and what one decision costs.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#1a5fb4",
+  "lang": "en",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
