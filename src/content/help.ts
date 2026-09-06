@@ -19,7 +19,7 @@ export const helpLines: HelpLine[] = [
   {
     id: "988",
     name: "988 Suicide & Crisis Lifeline",
-    what: { en: "If you are thinking about hurting yourself, or you just cannot cope tonight. Call or text.", es: "Si piensas en hacerte daño, o simplemente no puedes más esta noche. Llama o envía un texto." },
+    what: { en: "Whether you're facing mental health struggles, emotional distress, alcohol or drug use concerns, or just need someone to talk to, our caring counselors are here for you. You are not alone.", es: "Ya sea que estés enfrentando problemas de salud mental, angustia emocional, preocupaciones por el consumo de alcohol o drogas, o simplemente necesites hablar con alguien, nuestros consejeros compasivos están aquí para ti. No estás solo." },
     phone: "988",
     text: "988",
     url: "https://988lifeline.org/",
@@ -39,7 +39,7 @@ export const helpLines: HelpLine[] = [
   {
     id: "ombudsperson",
     name: "California Foster Care Ombudsperson",
-    what: { en: "A right is being ignored, nobody returns your calls, or you want to re-enter care and cannot reach the county. They investigate.", es: "Ignoran un derecho tuyo, nadie te devuelve las llamadas, o quieres volver al cuidado y no logras contactar al condado. Ellos investigan." },
+    what: { en: "If a county child welfare agency is ignoring your Foster Youth Bill of Rights, refusing to return your calls, or making it impossible for you to re-enter extended foster care (AB 12)", es: "Ignoran un derecho tuyo, nadie te devuelve las llamadas, o quieres volver al cuidado y no logras contactar al condado. Ellos investigan." },
     phone: "1-877-846-1602",
     url: "https://fosteryouthhelp.ca.gov/",
     hours: "Mon-Fri business hours",
@@ -55,7 +55,7 @@ export const helpLines: HelpLine[] = [
   {
     id: "ilp",
     name: "Your county ILP coordinator",
-    what: { en: "The person whose job is to help you transition: housing, money for a deposit, college applications, documents. Every county has one.", es: "La persona cuyo trabajo es ayudarte en la transición: vivienda, dinero para un depósito, solicitudes universitarias, documentos. Cada condado tiene uno." },
+    what: { en: "The ILP provides training, services, and benefits to assist current and former foster youth in achieving self-sufficiency prior to, and after leaving, the foster care system. They will help with housing, money for a deposit, college applications, documents. All counties have an ILP.", es: "La persona cuyo trabajo es ayudarte en la transición: vivienda, dinero para un depósito, solicitudes universitarias, documentos. Cada condado tiene uno." },
     url: "https://www.cdss.ca.gov/inforesources/foster-care/independent-living-program",
     hours: "Business hours; list by county on the CDSS page",
   },

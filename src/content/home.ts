@@ -49,4 +49,4 @@ export const promises: Promise[] = [
 export const HOME_VOICES = 4;
 
 // the hero photo credit, shown small in the corner. Empty string hides it.
-export const PHOTO_CREDIT = "Stand-in photo: Maryland GovPics, Foster Youth Day, CC BY 2.0. Replace with public/hero.jpg.";
+export const PHOTO_CREDIT = "Photo is from Maryland GovPics, Foster Youth Day, CC BY 2.0. Replace with public/hero.jpg.";
