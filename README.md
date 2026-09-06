@@ -1,38 +1,34 @@
 # Before 18
 
-What foster youth in California are owed, when it opens, when it closes, and what
-one decision costs. No account, nothing leaves the phone, works without signal.
+California’s foster youth deserve, opening time, closing time, and the price of one choice. 
+No record, nothing comes out of the phone, works without signal.
 
 Built for the Congressional App Challenge 2026.
 
 ## The problem
 
-About 20,000 young people age out of foster care in the U.S. every year. Roughly one
-in five is homeless the day they leave; 40 to 50 percent within eighteen months.
-A lot of that is avoidable and already paid for: a placement and about $1,301 a month
-until 21 (extended foster care), free Medi-Cal until 26, up to $5,000 a year for
-school, priority registration, transitional housing to 25, and the legal right to walk
-out holding your own birth certificate, Social Security card, and ID. Every one has an
-age or a date attached, and several turn on a single fact - were you in care on your
-18th birthday? - that nobody explains to the person it happens to.
+20,000 adolescents in America "age out" of the foster care system annually.
+Approximately one in five is homeless upon exiting; up to 40 to 50 percent within
+eighteen months. Much of this could be avoided through funding and systems that already exist:
+placement and around $1,301 monthly until age 21 (extended foster care), Medi-Cal for
+life until age 26, up to $5,000 annually for schooling, preference registration,
+transitional housing until 25, and the legal right to leave in possession of your own
+birth certificate, Social Security number, and ID. Each comes with either an age or
+date of eligibility attached, while several hinge on a single qualification - whether
+or not you were in foster care on your 18th birthday - that nobody tells you
+personally.
 
 ## What the app does
 
-- **My timeline** - from your birthdate and a few yes/no/not-sure answers: what is
-  open for you now, what opens and closes when (with day counts), and what you are
-  not eligible for and exactly why.
-- **What if** - runs the same rules with one decision changed (leave at 18, exit
-  before your 18th birthday, skip the FAFSA, leave without documents) and shows what
-  falls off the list, with a dollar estimate where one is honest to give.
-- **Rights** - the California Foster Youth Bill of Rights and the federal transition
-  rights, each with the law behind it. Printable.
-- **Documents** - the exit-documents checklist federal law requires, with where to
-  get each one and what it costs to replace.
-- **Help** - who to call, urgent lines first.
-- **Story** - walk a year in a foster youth's shoes; every choice shows its real consequence and the law behind it.
-- **My plan + calendar** - the next three things to do, and every deadline as a calendar file with reminders.
+- **My timeline** - using your birthdate and answering a handful of yes/no/maybe questions: what's open to you, when what opens/closes (counting days), and what you are not eligible for and exactly why.
+- **What if** - run the rules above but switch one decision, and show how that affects what falls out of eligibility, with a good-faith dollar value estimate where applicable.
+- **Rights** - the California Foster Youth Bill of Rights, and the federal transition rights, with the legal basis for each. Printable.
+- **Documents** - the list of exit documentation mandated by federal law, and how to get each document and how much it would cost to replace it.
+- **Help** - who to call, starting with hotlines.
+- **Walkthrough** - walk a year as a foster youth; every decision reveals its consequence and the law behind it.
+- **My plan + calendar** - the top three next steps, and all deadlines as a calendar file.
 - **County contacts** - your county's ILP / extended foster care / THP-Plus contacts, from the CDSS list.
-- English, Spanish, Vietnamese, Chinese (the last two are drafts awaiting native-speaker review). Installable, offline.
+- English, Spanish, Vietnamese, Chinese (last two are preliminary drafts). Installable, offline.
 
 ## Accuracy
 
