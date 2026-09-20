@@ -1,34 +1,36 @@
 # Before 18
 
-California’s foster youth deserve, opening time, closing time, and the price of one choice. 
-No record, nothing comes out of the phone, works without signal.
+A free app for foster youth in California who are about to turn 18. It shows what
+you are owed, when each thing opens, when it closes, and what one decision would
+cost. No account. Nothing leaves your phone. Works without signal.
 
-Built for the Congressional App Challenge 2026.
+Live: https://avery45234.github.io/before18/
+
+Built by Avery Updike, 12th grade, Cerritos, for the Congressional App Challenge 2026.
 
 ## The problem
 
-20,000 adolescents in America "age out" of the foster care system annually.
-Approximately one in five is homeless upon exiting; up to 40 to 50 percent within
-eighteen months. Much of this could be avoided through funding and systems that already exist:
-placement and around $1,301 monthly until age 21 (extended foster care), Medi-Cal for
-life until age 26, up to $5,000 annually for schooling, preference registration,
-transitional housing until 25, and the legal right to leave in possession of your own
-birth certificate, Social Security number, and ID. Each comes with either an age or
-date of eligibility attached, while several hinge on a single qualification - whether
-or not you were in foster care on your 18th birthday - that nobody tells you
-personally.
+About 20,000 young people in the United States age out of foster care every year.
+Roughly one in five is homeless the day they leave, and 40 to 50 percent within
+eighteen months. Much of that is avoidable with programs that already exist: a
+placement and about $1,301 a month until 21 (extended foster care), free Medi-Cal
+until 26, up to $5,000 a year for school, priority class registration, transitional
+housing until 25, and the legal right to leave care holding your own birth
+certificate, Social Security card, and ID. Each one has an age or a date attached,
+and several hinge on a single fact, whether you were in foster care on your 18th
+birthday, that nobody explains to you in person.
 
 ## What the app does
 
-- **My timeline** - using your birthdate and answering a handful of yes/no/maybe questions: what's open to you, when what opens/closes (counting days), and what you are not eligible for and exactly why.
-- **What if** - run the rules above but switch one decision, and show how that affects what falls out of eligibility, with a good-faith dollar value estimate where applicable.
-- **Rights** - the California Foster Youth Bill of Rights, and the federal transition rights, with the legal basis for each. Printable.
-- **Documents** - the list of exit documentation mandated by federal law, and how to get each document and how much it would cost to replace it.
-- **Help** - who to call, starting with hotlines.
-- **Walkthrough** - walk a year as a foster youth; every decision reveals its consequence and the law behind it.
-- **My plan + calendar** - the top three next steps, and all deadlines as a calendar file.
-- **County contacts** - your county's ILP / extended foster care / THP-Plus contacts, from the CDSS list.
-- English, Spanish, Vietnamese, Chinese (last two are preliminary drafts). Installable, offline.
+- **Timeline** - your birthdate plus five yes/no/not-sure questions become your own calendar: what is open now, what opens and closes on which date, what you are not eligible for and exactly why, and your milestones by age. Every rule leads with "what this means for you" and keeps the details behind a button.
+- **What if** - the same rules with one decision changed, and what falls off the list, with a dollar estimate where one is honest to give.
+- **Story** - a year in care as Jordan, a composite built from documented cases; each choice shows its consequence and the real rule behind it.
+- **Toolkit** - the rights card, the exit-documents checklist, questions for the transition meeting, six ready-to-send letters, an affordability calculator, a printable flyer with a QR code, and a share screen.
+- **Real voices** - people who aged out of care, quoted verbatim from published sources.
+- **My plan + calendar** - the next three things to do, and every deadline as a calendar file.
+- **County contacts** - your county's ILP, extended foster care, and THP-Plus contacts from the CDSS list.
+- **Help** - who to call, starting with the crisis lines.
+- English and Spanish, complete and tested for parity; Vietnamese and Chinese as drafts awaiting a native speaker. Installable, works offline.
 
 ## Accuracy
 
@@ -54,9 +56,9 @@ authorship checklist.
 
 - `src/content/` - the rules, rights, documents, and help lines as plain data with sources
 - `src/engine/` - pure functions: date math, the timeline builder, the what-if calculator
-- `src/i18n/` - UI strings in English and Spanish
+- `src/i18n/` - every sentence the interface shows, in four languages
 - `src/ui/` - the screens (React)
-- `tests/` - unit tests for the engine and a check that every rule cites a source
+- `tests/` - unit tests for the engine, a check that every rule cites a source, and a check that the Spanish is complete
 
 See `AI_ASSISTANCE_LOG.md` for how I used AI tools while building this.
 
@@ -74,12 +76,9 @@ See [docs/EDITING.md](docs/EDITING.md): every folder, every file, and a table of
 
 ## Logo files
 
-The b418 artwork is not committed as code. Put the two PNGs in `public/`:
-
-- `public/logo.png` : the house mark with the `b418` wordmark (used in the header and the flyer)
-- `public/mark.png` : the house mark alone, square with a transparent background (in place; used on the home page and, until logo.png exists, in the header)
-
-If either file is missing the app draws the same mark as an SVG, so nothing breaks.
+- `public/mark.png` is the b418 house mark (committed, transparent background). It is used on the home page and in the header.
+- The "b418" wordmark next to it is drawn by the app in the two logo blues (`src/ui/Logo.tsx`), so the full logo shows in the header and on the flyer without a second file.
+- Optional: if you have the original wide artwork (house plus wordmark as one image), save it as `public/logo.png` and the header and flyer will use that file instead of the drawn wordmark. The `public/icon.svg` app icon can be replaced the same way.
 
 ## Site address
 
