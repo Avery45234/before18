@@ -64,6 +64,10 @@ See `AI_ASSISTANCE_LOG.md` for how I used AI tools while building this.
 
 Every browser feature I had to look up is listed in [docs/GUIDES.md](docs/GUIDES.md) with the guide's link, and the same link sits in a comment on the code that came from it.
 
+## What users said
+
+[docs/FEEDBACK.md](docs/FEEDBACK.md) records the feedback from foster youth and what changed in the app because of it.
+
 ## Where things are
 
 See [docs/EDITING.md](docs/EDITING.md): every folder, every file, and a table of "to change X, open Y".

@@ -41,7 +41,7 @@ export function LettersScreen({ profile }: { profile: Profile | null }) {
   const birthdate = born ? fmtDate(born, lang) : "";
   // useMemo = remember the result until the inputs change (https://react.dev/reference/react/useMemo)
   const generated = useMemo(
-    () => fill(pick(letter.body, lang), { ...f, county: profile?.county ?? "", date: today, birthdate }),
+    () => fill(pick(letter.body, lang), { ...f, county: profile?.county ?? "", date: today, birthdate }, lang),
     [letter, lang, f, profile, today, birthdate],
   );
   const text = edited ?? generated;

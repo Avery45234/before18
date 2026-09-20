@@ -238,12 +238,13 @@ Gracias,
 
 export interface Fill { name: string; caseworker: string; county: string; date: string; birthdate: string }
 
-export function fill(template: string, f: Fill): string {
+export function fill(template: string, f: Fill, lang = "en"): string {
+  const es = lang === "es";
   const v = (s: string, fallback: string) => (s.trim() ? s.trim() : fallback);
   return template
-    .replace(/\{name\}/g, v(f.name, "[your name]"))
-    .replace(/\{caseworker\}/g, v(f.caseworker, "[caseworker's name]"))
-    .replace(/\{county\}/g, v(f.county, "[county]"))
-    .replace(/\{birthdate\}/g, v(f.birthdate, "[your birthdate]"))
+    .replace(/\{name\}/g, v(f.name, es ? "[tu nombre]" : "[your name]"))
+    .replace(/\{caseworker\}/g, v(f.caseworker, es ? "[nombre del trabajador social]" : "[caseworker's name]"))
+    .replace(/\{county\}/g, v(f.county, es ? "[condado]" : "[county]"))
+    .replace(/\{birthdate\}/g, v(f.birthdate, es ? "[tu fecha de nacimiento]" : "[your birthdate]"))
     .replace(/\{date\}/g, f.date);
 }

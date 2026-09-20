@@ -4,6 +4,9 @@ import { useLang, useT, pick } from "../../i18n";
 import { Icon } from "../icons";
 import { Button, PageHead } from "../parts";
 
+// The exit documents checklist. Each document is one card: the checkbox and the
+// name, one line on why it matters, and "where to get it" behind a button.
+
 const KEY = "before18.docs";
 
 function load(): Record<string, boolean> {
@@ -18,6 +21,7 @@ export function DocumentsScreen() {
   const t = useT();
   const { lang } = useLang();
   const [have, setHave] = useState<Record<string, boolean>>(load);
+  const [open, setOpen] = useState<Record<string, boolean>>({});
   const toggle = (id: string) => {
     const next = { ...have, [id]: !have[id] };
     setHave(next);
@@ -44,14 +48,21 @@ export function DocumentsScreen() {
       </div>
       <ul className="doclist">
         {exitDocuments.map((d) => (
-          <li key={d.id} className={have[d.id] ? "have" : ""}>
+          <li key={d.id} className={`doc-card ${have[d.id] ? "have" : ""}`}>
             <label className="doc-check">
               <input type="checkbox" checked={!!have[d.id]} onChange={() => toggle(d.id)} />
               <span className="doc-name">{pick(d.name, lang)}</span>
             </label>
             <div className="doc-why">{pick(d.why, lang)}</div>
-            <div className="doc-get"><b>{t.documents.getIt}:</b> {d.getIt} <a href={d.url} target="_blank" rel="noreferrer">↗</a></div>
-            <div className="doc-cost"><b>{t.documents.cost}:</b> {d.replaceCost}</div>
+            <button className="details-toggle" onClick={() => setOpen({ ...open, [d.id]: !open[d.id] })} aria-expanded={!!open[d.id]}>
+              {open[d.id] ? t.common.less : t.documents.getIt} <span className={`chev ${open[d.id] ? "open" : ""}`}>{Icon.chevron()}</span>
+            </button>
+            {open[d.id] && (
+              <div className="doc-more">
+                <div><b>{t.documents.getIt}:</b> {pick(d.getIt, lang)} <a href={d.url} target="_blank" rel="noreferrer">{t.common.openSite}</a></div>
+                <div><b>{t.documents.cost}:</b> {pick(d.replaceCost, lang)}</div>
+              </div>
+            )}
           </li>
         ))}
       </ul>

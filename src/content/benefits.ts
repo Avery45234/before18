@@ -19,7 +19,7 @@ export type Category = "money" | "health" | "housing" | "school" | "documents" |
 export interface AgeWindow {
   opens?: { years: number; months?: number } | "atExit";
   closes?: { years: number; months?: number } | "atExit";
-  note?: string; // e.g. "under 26 on July 1 of the award year"
+  note?: Text; // e.g. "under 26 on July 1 of the award year"
 }
 
 export interface Requirement {
@@ -36,10 +36,10 @@ export interface Benefit {
   window: AgeWindow;
   requirements: (p: Profile) => Requirement[];
   // what it is worth, so the What-if screen can put a number on a decision
-  value?: { monthly?: number; oneTime?: number; perYear?: number; years?: number; note: string };
+  value?: { monthly?: number; oneTime?: number; perYear?: number; years?: number; note: Text };
   howTo: (string | Text)[]; // short steps; strings are English-only, Text is translated
   sources: Source[];
-  changed?: string; // a recent change the person should know about
+  changed?: Text; // a recent change the person should know about
 }
 
 const R = (ok: boolean | "unsure", en: string, es: string): Requirement => ({ ok, text: { en, es } });
@@ -56,7 +56,7 @@ export const benefits: Benefit[] = [
       en: "While you are in care you have legal rights: a safe home, contact with family and siblings, your own phone calls and mail, medical and mental health care, your own belongings, your attorney and a court hearing.",
       es: "Mientras estés bajo cuidado tienes derechos legales: un hogar seguro, contacto con tu familia y hermanos, llamadas y correo privados, atención médica y de salud mental, tus pertenencias, tu abogado y una audiencia en la corte.",
     },
-    window: { closes: { years: 21 }, note: "Applies the whole time you are in care, including extended foster care to 21" },
+    window: { closes: { years: 21 }, note: { en: "Applies the whole time you are in care, including extended foster care to 21", es: "Aplica todo el tiempo que estés en el sistema, incluido el cuidado extendido hasta los 21" } },
     requirements: (p) => [R(yn(p.inCareNow), "You are in foster care in California", "Estás en cuidado adoptivo en California")],
     howTo: [
       "Ask your social worker or attorney for the written list (they are required to give it to you).",
@@ -107,7 +107,7 @@ export const benefits: Benefit[] = [
       en: "If a placement change would move you, you have the right to stay at your current school, get transportation, and enroll immediately at a new school without records or paperwork.",
       es: "Si un cambio de hogar te obliga a mudarte, tienes derecho a quedarte en tu escuela actual, recibir transporte, e inscribirte de inmediato en una escuela nueva sin papeles ni expedientes.",
     },
-    window: { closes: { years: 18 }, note: "K-12; through graduation" },
+    window: { closes: { years: 18 }, note: { en: "K-12; through graduation", es: "K-12; hasta graduarte" } },
     requirements: (p) => [R(yn(p.inCareNow), "You are in foster care in California", "Estás en cuidado adoptivo en California")],
     howTo: ["Every school district has a foster youth liaison. Ask the front office for theirs.", "Say the words 'school of origin' - it is a legal term and staff will know what you mean."],
     sources: [{ name: "California Dept. of Education - Foster Youth Services (AB 490 rights)", url: "https://www.cde.ca.gov/ls/pf/fy/", retrieved: "2026-09-06" }],
@@ -175,7 +175,7 @@ export const benefits: Benefit[] = [
       R(yn(p.inCareOn18), "You are in foster care (or probation placement) on your 18th birthday", "Estás en cuidado adoptivo (o colocación de probatoria) el día que cumples 18"),
       R(yn(p.inCareNow) === "unsure" ? "unsure" : true, "You sign a Mutual Agreement (SOC 162) and meet one of the five conditions", "Firmas un Acuerdo Mutuo (SOC 162) y cumples una de las cinco condiciones"),
     ],
-    value: { monthly: 1301, years: 3, note: "SILP basic rate effective July 1, 2025. Your placement type may pay differently." },
+    value: { monthly: 1301, years: 3, note: { en: "SILP basic rate effective July 1, 2025. Your placement type may pay differently.", es: "Tarifa básica SILP vigente desde el 1 de julio de 2025. Tu tipo de colocación puede pagar distinto." } },
     howTo: ["Before your 18th birthday, tell your caseworker and attorney: 'I want to stay in extended foster care.'", "Ask about a SILP if you want your own place. The monthly payment goes to you.", "If you leave and change your mind, you can come back any time before 21 (see Re-entry)."],
     sources: [
       { name: "CDSS - Extended Foster Care (AB 12)", url: "https://www.cdss.ca.gov/inforesources/foster-care/extended-foster-care-ab-12", retrieved: "2026-09-06" },
@@ -211,7 +211,7 @@ export const benefits: Benefit[] = [
       R(yn(p.inCareOn18), "You were in foster care on your 18th birthday (any state)", "Estabas en cuidado adoptivo el día que cumpliste 18 (cualquier estado)"),
       R(p.state === "CA", "You live in California", "Vives en California"),
     ],
-    value: { years: 8, note: "Full-scope coverage with no premium and no share of cost." },
+    value: { years: 8, note: { en: "Full-scope coverage with no premium and no share of cost.", es: "Cobertura completa sin prima y sin costo compartido." } },
     howTo: ["If you are leaving care, ask that your Medi-Cal be switched to the Former Foster Youth program before you go.", "If it lapsed: fill out form MC 250A (Medi-Cal for Former Foster Care Youth) at any county office, or apply at benefitscal.com and check the former foster youth box."],
     sources: [{ name: "DHCS - Former Foster Youth Program FAQ", url: "https://www.dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/frequently-asked-questions-for-the-former-foster-youth-program/", retrieved: "2026-09-06" }],
   },
@@ -226,9 +226,9 @@ export const benefits: Benefit[] = [
       en: "If you were in foster care at any time since turning 13, the FAFSA does not ask for a parent's income or signature. That usually means the maximum Pell Grant (up to $7,395 a year) plus state aid. File it - it unlocks almost everything else on this list.",
       es: "Si estuviste en cuidado adoptivo en cualquier momento desde los 13 años, la FAFSA no pide ingresos ni firma de un padre. Eso normalmente significa la Beca Pell máxima (hasta $7,395 al año) más ayuda estatal. Llénala: abre casi todo lo demás en esta lista.",
     },
-    window: { opens: { years: 17 }, note: "Opens October 1 each year for the following school year" },
+    window: { opens: { years: 17 }, note: { en: "Opens October 1 each year for the following school year", es: "Abre el 1 de octubre de cada año para el siguiente año escolar" } },
     requirements: (p) => [R(yn(p.inCareAfter13), "You were in foster care at any time on or after your 13th birthday", "Estuviste en cuidado adoptivo en cualquier momento desde tu cumpleaños número 13")],
-    value: { perYear: 7395, note: "Maximum Federal Pell Grant, 2025-26 award year." },
+    value: { perYear: 7395, note: { en: "Maximum Federal Pell Grant, 2025-26 award year.", es: "Beca Pell federal máxima, año 2025-26." } },
     howTo: ["Go to studentaid.gov, make an FSA ID, and answer 'yes' to the question about being in foster care since age 13.", "No Social Security number? Use the California Dream Act Application (CADAA) at csac.ca.gov instead.", "Ask your ILP coordinator or a college's foster youth program to sit with you while you do it."],
     sources: [
       { name: "Federal Student Aid - Dependency status", url: "https://studentaid.gov/apply-for-aid/fafsa/filling-out/dependency", retrieved: "2026-09-06" },
@@ -244,12 +244,12 @@ export const benefits: Benefit[] = [
       en: "Free money for college or job training, on top of other aid, for up to five years - as long as you are under 26 on July 1 of the school year. For 2025-26 the award is $4,500. You were eligible if you were in foster care at any point between 16 and 18.",
       es: "Dinero gratis para la universidad o capacitación, además de otras ayudas, hasta por cinco años, siempre que tengas menos de 26 el 1 de julio del año escolar. Para 2025-26 el monto es $4,500. Eres elegible si estuviste en cuidado adoptivo en algún momento entre los 16 y los 18.",
     },
-    window: { opens: { years: 17 }, closes: { years: 26 }, note: "Must be under 26 on July 1 of the award year; max 5 years of awards" },
+    window: { opens: { years: 17 }, closes: { years: 26 }, note: { en: "Must be under 26 on July 1 of the award year; max 5 years of awards", es: "Debes tener menos de 26 el 1 de julio del año de la beca; máximo 5 años de becas" } },
     requirements: (p) => [
       R(yn(p.inCare16to18), "You were in foster care (dependent or ward) at some point between 16 and 18", "Estuviste en cuidado adoptivo (dependiente o bajo tutela) en algún momento entre los 16 y 18"),
       R("unsure", "You filed the FAFSA or CADAA and enroll at least half time", "Presentaste la FAFSA o CADAA y te inscribes al menos medio tiempo"),
     ],
-    value: { perYear: 5000, years: 5, note: "Up to $5,000 per year; 2025-26 awards set at $4,500. Paid first-come, first-served." },
+    value: { perYear: 5000, years: 5, note: { en: "Up to $5,000 per year; 2025-26 awards set at $4,500. Paid first-come, first-served.", es: "Hasta $5,000 al año; en 2025-26 fijadas en $4,500. Se pagan por orden de llegada." } },
     howTo: ["Apply once at chafee.csac.ca.gov. Do not apply twice - it slows things down.", "Apply early in the year. Money runs out because it is first-come, first-served."],
     sources: [{ name: "California Student Aid Commission - Chafee Grant", url: "https://www.csac.ca.gov/chafee", retrieved: "2026-09-06" }],
   },
@@ -262,7 +262,7 @@ export const benefits: Benefit[] = [
       en: "A program just for students with foster care history: a counselor who knows the system, priority registration, help with books, food, transportation, and emergency money. You qualify if you were in care at any point after 13 and are 26 or younger when you first join.",
       es: "Un programa solo para estudiantes con historial de cuidado adoptivo: un consejero que conoce el sistema, inscripción prioritaria, ayuda con libros, comida, transporte y dinero de emergencia. Calificas si estuviste en cuidado en algún momento después de los 13 y tienes 26 o menos cuando te unes por primera vez.",
     },
-    window: { opens: { years: 17 }, closes: { years: 26 }, note: "Join before 26; services can continue after" },
+    window: { opens: { years: 17 }, closes: { years: 26 }, note: { en: "Join before 26; services can continue after", es: "Inscríbete antes de los 26; los servicios pueden continuar después" } },
     requirements: (p) => [R(yn(p.inCareAfter13), "You were in foster care at any time on or after your 13th birthday", "Estuviste en cuidado adoptivo en cualquier momento desde los 13 años")],
     howTo: ["Search '[college name] NextUp' or ask the financial aid office for the foster youth program.", "Sign up before your first semester so priority registration kicks in."],
     sources: [{ name: "California Community Colleges - NextUp", url: "https://icangotocollege.com/financial-aid/foster-youth-support", retrieved: "2026-09-06" }],
@@ -290,7 +290,7 @@ export const benefits: Benefit[] = [
       en: "Transitional housing with support services for former foster youth ages 18 to 25, for up to 36 months. If extended foster care ends or is not an option, this is the next door to knock on.",
       es: "Vivienda de transición con servicios de apoyo para ex jóvenes en cuidado adoptivo de 18 a 25 años, hasta por 36 meses. Si el cuidado extendido termina o no es opción, esta es la siguiente puerta a tocar.",
     },
-    window: { opens: { years: 18 }, closes: { years: 25 }, note: "Up to 36 months total" },
+    window: { opens: { years: 18 }, closes: { years: 25 }, note: { en: "Up to 36 months total", es: "Hasta 36 meses en total" } },
     requirements: (p) => [R(yn(p.inCareOn18), "You aged out of foster care (or probation placement) at 18 or older", "Saliste del cuidado adoptivo (o colocación de probatoria) a los 18 o más")],
     howTo: ["Ask your county ILP coordinator which THP-Plus providers serve your county and whether there is a waitlist.", "Apply before extended foster care ends, not after."],
     sources: [{ name: "Youth Law Center - THP-Plus Program Expansion (age 25, 36 months, eff. July 1, 2022)", url: "https://www.ylc.org/resource/policy-alert-thp-plus-program-expansion-a-resource-for-current-and-former-foster-youth-in-california/", retrieved: "2026-09-06" }],
@@ -306,7 +306,7 @@ export const benefits: Benefit[] = [
     },
     window: { opens: { years: 18 } },
     requirements: (p) => [R(yn(p.inCareOn18), "You were in care at 18 (helps with exemptions; not required to apply)", "Estabas en cuidado a los 18 (ayuda con exenciones; no es requisito para solicitar)")],
-    changed: "P.L. 119-21 (signed July 4, 2025) removed the former-foster-youth exemption from SNAP time limits for people under 25. California has asked for exemptions. Rules may differ by the time you read this.",
+    changed: { en: "P.L. 119-21 (signed July 4, 2025) removed the former-foster-youth exemption from SNAP time limits for people under 25. California has asked for exemptions. Rules may differ by the time you read this.", es: "La ley P.L. 119-21 (firmada el 4 de julio de 2025) eliminó la exención de los límites de tiempo de SNAP para ex jóvenes en cuidado menores de 25. California ha pedido exenciones. Las reglas pueden haber cambiado para cuando leas esto." },
     howTo: ["Apply at getcalfresh.org (takes about 10 minutes).", "If you are a student, tell them you are in extended foster care / NextUp / Guardian Scholars - that can exempt you from the student rule."],
     sources: [
       { name: "The Imprint - California bill would support food stamps for former foster youth (on P.L. 119-21)", url: "https://imprintnews.org/top-stories/california-lawmakers-looking-to-avoid-foster-youth-going-hungry/274537", retrieved: "2026-09-06" },

@@ -27,6 +27,10 @@ export function WhatIfScreen({ profile }: { profile: Profile }) {
             {open && (
               <div className="scenario-body">
                 <p className="decision">{pick(s.decision, lang)}</p>
+                <div className="in-short">
+                  <span className="k">{t.whatif.inShort}</span> <b>{s.losses.length}</b> {s.losses.length === 1 ? t.whatif.fallOffOne : t.whatif.fallOff}
+                  {s.total > 0 && <>, {t.whatif.worthAbout} <b>${s.total.toLocaleString()}</b></>}.
+                </div>
 
                 <div className="sub">{t.whatif.chain}</div>
                 <ol className="chain">

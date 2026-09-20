@@ -17,7 +17,7 @@ export function HelpScreen() {
         {h.text && <Button size="small" kind="alt" href={`sms:${h.text}`}>{t.help.text} {h.text}</Button>}
         <Button size="small" kind="ghost" href={h.url} external>{t.help.website}</Button>
       </div>
-      <div className="help-hours">{h.hours}</div>
+      <div className="help-hours">{pick(h.hours, lang)}</div>
     </li>
   );
   return (

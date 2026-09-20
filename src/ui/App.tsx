@@ -18,6 +18,7 @@ import { ShareScreen } from "./screens/Share";
 import { FlyerScreen } from "./screens/Flyer";
 import { LettersScreen } from "./screens/Letters";
 import { VoicesScreen } from "./screens/Voices";
+import { WhyScreen } from "./screens/Why";
 import { Icon, type IconName } from "./icons";
 import { Logo } from "./Logo";
 
@@ -25,8 +26,8 @@ import { Logo } from "./Logo";
 // show, so a link can be shared or bookmarked and the app still works offline as
 // one file. The browser fires a "hashchange" event whenever that part changes:
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event
-export type Route = "home" | "setup" | "timeline" | "whatif" | "story" | "toolkit" | "rights" | "documents" | "meeting" | "afford" | "help" | "about" | "share" | "flyer" | "letters" | "voices";
-const ROUTES: Route[] = ["home", "setup", "timeline", "whatif", "story", "toolkit", "rights", "documents", "meeting", "afford", "help", "about", "share", "flyer", "letters", "voices"];
+export type Route = "home" | "setup" | "timeline" | "whatif" | "story" | "toolkit" | "rights" | "documents" | "meeting" | "afford" | "help" | "about" | "share" | "flyer" | "letters" | "voices" | "why";
+const ROUTES: Route[] = ["home", "setup", "timeline", "whatif", "story", "toolkit", "rights", "documents", "meeting", "afford", "help", "about", "share", "flyer", "letters", "voices", "why"];
 
 function readRoute(): Route {
   const h = (window.location.hash || "#/").replace(/^#\/?/, "");
@@ -98,6 +99,7 @@ export function App() {
         {effective === "flyer" && <FlyerScreen />}
         {effective === "letters" && <LettersScreen profile={profile} />}
         {effective === "voices" && <VoicesScreen />}
+        {effective === "why" && <WhyScreen />}
       </Shell>
     </LangContext.Provider>
   );
@@ -122,6 +124,7 @@ function Shell({ route, children }: { route: Route; children: React.ReactNode })
           {tabs.map((tb) => (
             <a key={tb.r} href={`#/${tb.r}`} className={tb.on ? "on" : ""}>{tb.label}</a>
           ))}
+          <a href="#/why" className={route === "why" ? "on" : ""}>{t.nav.why}</a>
           <a href="#/about" className={route === "about" ? "on" : ""}>{t.nav.about}</a>
         </nav>
         <select className="lang" value={lang} onChange={(e) => setLang(e.target.value as typeof lang)} aria-label={t.common.language}>
@@ -131,6 +134,12 @@ function Shell({ route, children }: { route: Route; children: React.ReactNode })
       <main className="page" key={route}>
         {route !== "home" && <div className="page-label">{t.labels[route]}</div>}
         {children}
+        <footer className="foot">
+          <a href="#/why">{t.why.title}</a>
+          <a href="#/voices">{t.voices.title}</a>
+          <a href="#/about">{t.nav.about}</a>
+          <a href="#/share">{t.share.title}</a>
+        </footer>
       </main>
       <nav className="bottomnav" aria-label="Sections">
         {tabs.map((tb) => (

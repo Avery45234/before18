@@ -8,7 +8,7 @@ import { useLang } from "../i18n";
 const A0 = 14;
 const A1 = 26;
 
-export function Ribbon({ t }: { t: Timeline }) {
+export function Ribbon({ t, label }: { t: Timeline; label: string }) {
   const { lang } = useLang();
   const W = 1000;
   const PAD = 22; // room so the "14" and "26" labels do not clip at the edges
@@ -35,7 +35,7 @@ export function Ribbon({ t }: { t: Timeline }) {
 
   return (
     <div className="ribbon-wrap">
-      <svg viewBox={`0 0 ${W} ${H}`} className="ribbon" role="img" aria-label="Timeline from 14 to 26">
+      <svg viewBox={`0 0 ${W} ${H}`} className="ribbon" role="img" aria-label={label}>
         {/* age ticks */}
         {Array.from({ length: A1 - A0 + 1 }).map((_, k) => {
           const a = A0 + k;

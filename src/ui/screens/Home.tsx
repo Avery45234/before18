@@ -99,8 +99,7 @@ export function Home({ profile }: { profile: Profile | null }) {
         <section className="why">
           <h2>{t.home.whyTitle}</h2>
           <p>{t.home.why1}</p>
-          <p>{t.home.why2}</p>
-          <div className="why-sig">Avery, 2026</div>
+          <Button kind="ghost" href="#/why" iconAfter={Icon.arrow()}>{t.why.readMore}</Button>
         </section>
       </div>
     </div>

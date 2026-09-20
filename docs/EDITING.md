@@ -15,7 +15,8 @@ Everything you would want to edit is in one of three places:
 | Phone numbers on the Help page | `src/content/help.ts` |
 | Home page numbers, sources, photo credit | `src/content/home.ts` |
 | The printed flyer's words | `src/content/flyer.ts` |
-| The About page's paragraphs | `src/content/about.ts` |
+| The About page's paragraphs (English and Spanish) | `src/content/about.ts` |
+| The "Why I built this" page | `src/i18n/strings.ts` (`why.*` and `home.why1`), photo at `public/avatar.jpg` |
 | County contacts (from the CDSS list) | `src/content/counties.ts` |
 | Colors, fonts, spacing | `src/ui/styles.css` (the `:root` block at the top holds every color) |
 | The logo | `public/mark.png` (house), `public/logo.png` (house plus wordmark, optional) |
@@ -70,12 +71,15 @@ Everything you would want to edit is in one of three places:
 │       │   ├── Button.tsx     <Button href|onClick kind size icon>   every button and button-link
 │       │   ├── PageHead.tsx   <PageHead title lead action>           the top of every inner page
 │       │   ├── Door.tsx       <Door href icon title text>            a card that is a link
-│       │   └── SectionTitle.tsx                                      small uppercase section label
+│       │   ├── SectionTitle.tsx                                      small uppercase section label
+│       │   └── Avatar.tsx     a round photo with initials as the fallback
 │       └── screens/           one file per page
 │           Home, Setup, Timeline, WhatIf, Story, Toolkit, Rights, Documents,
-│           Meeting, Afford, Letters, Voices, Help, About, Share, Flyer
+│           Meeting, Afford, Letters, Voices, Help, About, Share, Flyer, Why
 ├── tests/engine.test.ts       28 tests: dates, eligibility, what-if, content hygiene, languages
-├── docs/                      demo script, outreach, authorship checklist, design references
+├── tests/spanish.test.ts      fails if any sentence the app shows has no Spanish
+├── scripts/es-audit.ts        prints what the Spanish test would complain about
+├── docs/                      demo script, outreach, authorship checklist, FEEDBACK.md (what users said and what changed)
 └── .github/workflows/         deploys to GitHub Pages on push
 ```
 
@@ -85,7 +89,8 @@ Everything you would want to edit is in one of three places:
 - **No raw `<button>` or `className="btn"`.** Use `<Button>`. Kinds: `primary` (default), `ghost`, `light`, `outline`, `danger`, `alt`. Sizes: `big`, `small`.
 - **Every inner page starts with `<PageHead>`.** The small blue label above it comes from `strings.labels`, keyed by route, so you do not add it yourself.
 - **Every number has a source.** In `benefits.ts` each rule carries `sources: [{ name, url, retrieved }]`. The tests fail if one is missing.
-- **Adding a language string:** add the key to `en`, then to `es`, `vi`, and `zh`. The test suite checks that all four have the same keys.
+- **Adding a language string:** add the key to `en`, then to `es`, `vi`, and `zh`. The test suite checks that all four have the same keys, and that the Spanish is real Spanish, not the English copied over.
+- **Summary first.** A rule, a decision, or a document shows one plain sentence about what it means for this person before any detail. Long parts go behind a "Full details" button (`.details-toggle`).
 
 ## Adding a page
 
