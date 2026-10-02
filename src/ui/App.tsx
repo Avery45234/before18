@@ -139,6 +139,7 @@ function Shell({ route, children }: { route: Route; children: React.ReactNode })
           <a href="#/voices">{t.voices.title}</a>
           <a href="#/about">{t.nav.about}</a>
           <a href="#/share">{t.share.title}</a>
+          <a href="for-organizations.html">{({ en: "For organizations", es: "Para organizaciones", vi: "Dành cho tổ chức", zh: "机构使用指南" })[lang]}</a>
         </footer>
       </main>
       <nav className="bottomnav" aria-label="Sections">
